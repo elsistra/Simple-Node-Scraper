@@ -1,8 +1,8 @@
 const https = require('https');
+const http = require('http');
 const cheerio = require('cheerio');
 
-https.get('https://www.reddit.com', (res) => {
-  console.log(res.statusCode, res.statusMessage);
+http.get('http://flicks.com', (res) => {
   res.setEncoding('utf8');
   let rawData = '';
 
@@ -11,15 +11,12 @@ https.get('https://www.reddit.com', (res) => {
   });
 
   res.on('end', () => {
-    //console.log(rawData);
-	//const $ = cheerio.load(rawData);
-	//console.log(res.headers['location']);
-	
-	const regExp = new RegExp("Trump", "ig");
+
+	const regExp = new RegExp("free", "ig");
 	const matches = rawData.match(regExp);
 
 	if (matches) {
-	  console.log('Found this many occurrences of the string "Trump": ', matches.length);
+	  console.log('Found this many occurrences of the string "Free": ', matches.length);
 	} else {
 	  console.log('String not found.');
 	}
