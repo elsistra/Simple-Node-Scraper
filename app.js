@@ -11,17 +11,16 @@ http.get('http://flicks.com', (res) => {
   });
 
   res.on('end', () => {
+  	const regExp = new RegExp("free", "ig");
+  	const matches = rawData.match(regExp);
 
-	const regExp = new RegExp("free", "ig");
-	const matches = rawData.match(regExp);
-
-	if (matches) {
-	  console.log('Found this many occurrences of the string "Free": ', matches.length);
-	} else {
-	  console.log('String not found.');
-	}
-
+  	if (matches) {
+  	  console.log('Found this many occurrences of the string "Free": ', matches.length);
+  	} else {
+  	  console.log('String not found.');
+  	}
   });
+
 }).on('error', (err) => {
   console.error(`Got error: ${err.message}`);
 });
