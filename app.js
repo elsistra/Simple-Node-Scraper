@@ -9,17 +9,14 @@ https.get('https://www.reddit.com', (res) => {
   res.on('data', (chunk) => {
     rawData += chunk;
   });
-  
-  
 
   res.on('end', () => {
     //console.log(rawData);
-	const $ = cheerio.load(rawData);
-	console.log(res.headers['location']);
+	//const $ = cheerio.load(rawData);
+	//console.log(res.headers['location']);
 	
 	const regExp = new RegExp("Trump", "ig");
 	const matches = rawData.match(regExp);
-
 
 	if (matches) {
 	  console.log('Found this many occurrences of the string "Trump": ', matches.length);
